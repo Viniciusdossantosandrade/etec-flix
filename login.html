@@ -1,39 +1,23 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Etec flix </title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link rel="stylesheet" href="style_login.css" />
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.php" class="active">Início</a></li>
-                <li><a href="sobre.php">Sobre</a></li>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="contato.php">Contato</a></li>
-              </ul>
-              
-        </nav>
-    </header>
 
-    <section class="login">
-        <h1>Área de Login</h1>
-        <form action="#" method="POST">
-            <label for="username">Usuário:</label>
-            <input type="text" id="username" name="username" required>
-            
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
+  <div class="login-container">
+    <h1>Login</h1>
 
-            <button type="submit">Entrar</button>
-        </form>
-    </section>
+    <form method="POST" action="">
+      <input name="email" placeholder="E-mail" type="text" required />
+      <input type="password" name="senha" placeholder="Senha" required />
+      <input type="submit" value="Entrar"/>
+      <p><a href="index.php">Voltar</a></p>
+    </form>
+  </div>
 
-    <footer>
-        <p></p>
-    </footer>
 </body>
 </html>
