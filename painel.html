@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ETECFLIX</title>
+    <link rel="stylesheet" href="painel.css" />
+</head>
+<body>
+    <!-- HEADER DO PAINEL DO USUÁRIO -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">ETECFLIX</div>
+            <!-- MENU DE NAVEGAÇÃO DO USUÁRIO LOGADO -->
+            <ul class="menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <!-- LINK PARA LOGOUT - VOLTA PARA PÁGINA DE LOGIN -->
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CONTEÚDO DO PAINEL DO USUÁRIO -->
+    <main>
+        <!-- SEÇÃO DE BOAS-VINDAS -->
+        <section class="intro-melhorada">
+            <h1>ETECFLIX</h1>
+            <h2>Bem-vindo, Usuário!</h2>
+            <p>Avalie os filmes abaixo e compartilhe sua opinião</p>
+        </section>
+
+        <!-- CONTAINER DOS CARDS DE FILMES -->
+        <section class="filmes-container">
+            
+            <!-- CARD 1 - VINGADORES -->
+            <div class="card-filme">
+                <img src="https://image.tmdb.org/t/p/w500/q6725aR8Zs4IwGMXzZT8aC8lh41.jpg" 
+                     alt="Vingadores: Ultimato" class="capa-filme">
+                <h3 class="titulo-filme">Vingadores: Ultimato</h3>
+                <p class="categoria-filme">Ação • Ficção Científica</p>
+                
+            </div>
+
+            <!-- CARD 2 - HOMEM-ARANHA -->
+            <div class="card-filme">
+                <img src="https://image.tmdb.org/t/p/w500/fVzXp3NwovUlLe7fvoRynCmBPNc.jpg" 
+                     alt="Homem-Aranha: Sem Volta para Casa" class="capa-filme">
+                <h3 class="titulo-filme">Homem-Aranha: Sem Volta para Casa</h3>
+                <p class="categoria-filme">Ação • Aventura</p>
+                
+            </div>
+
+            <!-- CARD 3 - DUNA -->
+            <div class="card-filme">
+                <img src="https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg" 
+                     alt="Duna" class="capa-filme">
+                <h3 class="titulo-filme">Duna</h3>
+                <p class="categoria-filme">Ficção Científica • Drama</p>
+                
+            </div>
+        </section>
+
+        <!-- BOTÃO PARA VOLTAR AO INÍCIO -->
+        <div class="login-button-container" style="text-align: center; margin: 2rem;">
+            <a href="index.html"><button class="login-button">Voltar para Início</button></a>
+        </div>
+    </main>
+
+    <!-- RODAPÉ DO PAINEL -->
+    <footer class="footer">
+        <p class="paragrafo-rodape"></p>
+    </footer>
+
+    <!-- JAVASCRIPT PARA FUNCIONALIDADE DAS AVALIAÇÕES -->
+    <script>
+        // VARIÁVEL PARA ARMAZENAR AS AVALIAÇÕES
+        let avaliacoes = {};
+
+        // FUNÇÃO PARA INICIALIZAR AS ESTRELAS
+        document.addEventListener('DOMContentLoaded', function() {
+            // CONFIGURA O CLIQUE NAS ESTRELAS
+            document.querySelectorAll('.star').forEach(star => {
+                star.addEventListener('click', function() {
+                    const filmeId = this.parentElement.getAttribute('data-filme');
+                    const value = this.getAttribute('data-value');
+                    
+                    // ATUALIZA AS ESTRELAS DO FILME ESPECÍFICO
+                    const stars = this.parentElement.querySelectorAll('.star');
+                    stars.forEach((s, index) => {
+                        if (index < value) {
+                            s.classList.add('ativa');
+                        } else {
+                            s.classList.remove('ativa');
+                        }
+                    });
+                    
+                    // SALVA A AVALIAÇÃO TEMPORÁRIA
+                    avaliacoes[filmeId] = value;
+                    
+                    // ATUALIZA O TEXTO DA NOTA
+                    document.getElementById(`nota-${filmeId}`).textContent = 
+                        `Sua nota: ${value}/5 estrelas`;
+                });
+            });
+        });
+
+        // FUNÇÃO PARA CONFIRMAR A AVALIAÇÃO
+        function avaliarFilme(filmeId) {
+            if (avaliacoes[filmeId]) {
+                const nota = avaliacoes[filmeId];
+                alert(`Obrigado! Você avaliou o filme com ${nota} estrelas!`);
+                
+                // AQUI VOCÊ PODERIA ENVIAR A AVALIAÇÃO PARA UM SERVIDOR
+                console.log(`Filme ${filmeId} avaliado com ${nota} estrelas`);
+            } else {
+                alert('Por favor, selecione uma nota antes de confirmar!');
+            }
+        }
+
+        // FUNÇÃO PARA SIMULAR AVALIAÇÕES SALVAS (OPCIONAL)
+        function carregarAvaliacoesSalvas() {
+            // ESTA FUNÇÃO PODERIA CARREGAR AVALIAÇÕES DO LOCALSTORAGE
+            const salvas = JSON.parse(localStorage.getItem('avaliacoes')) || {};
+            avaliacoes = { ...avaliacoes, ...salvas };
+            
+            // ATUALIZA A INTERFACE COM AS AVALIAÇÕES SALVAS
+            Object.keys(avaliacoes).forEach(filmeId => {
+                const nota = avaliacoes[filmeId];
+                const stars = document.querySelector(`[data-filme="${filmeId}"]`);
+                if (stars) {
+                    const starElements = stars.querySelectorAll('.star');
+                    starElements.forEach((s, index) => {
+                        if (index < nota) {
+                            s.classList.add('ativa');
+                        }
+                    });
+                    document.getElementById(`nota-${filmeId}`).textContent = 
+                        `Sua nota: ${nota}/5 estrelas`;
+                }
+            });
+        }
+
+        // CARREGA AVALIAÇÕES SALVAS AO INICIAR
+        carregarAvaliacoesSalvas();
+    </script>
+
+</body>
+</html>
+</html>
