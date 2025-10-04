@@ -1,40 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ETECFLIX</title>
     <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header>
-      <nav class="navbar">
-        <div class="logo">ETECFLIX</div>
-        <ul class="menu">
-          <li><a href="index.php">Início</a></li>
-          <li><a href="sobre.php">Sobre</a></li>
-          <li><a href="login.php">Login</a></li>
-        </ul>
-      </nav>
+</head>
+<body>
+    
+    <!-- HEADER PRINCIPAL COM NAVEGAÇÃO -->
+    <header class="header">
+        <div class="logo">
+            <h1>ETEC FLIX</h1>
+        </div>
+        <nav class="navbar">
+            <!-- BOTÕES DE NAVEGAÇÃO - CADA UM REDIRECIONA PARA UMA PÁGINA -->
+            <button class="nav-btn active" onclick="window.location.href='index.html'">Inicio</button>
+            <button class="nav-btn" onclick="window.location.href='sobre.html'">Sobre</button>
+            <button class="nav-btn" onclick="window.location.href='login.html'">Login</button>
+            <!-- BOTÃO VAZIO PARA FUTURAS IMPLEMENTAÇÕES -->
+            <button class="nav-btn" onclick="filtrarFilmes('Drama')"></button>
+        </nav>
     </header>
 
+    <!-- CONTEÚDO PRINCIPAL DA PÁGINA INICIAL -->
     <main>
-      <section class="intro">
-        <h1>ETECFLIX</h1>
-        <h2>Bem-vindo ao EtecFlix feito por João Rabelo</h2>
-        <p>
-         Sua plataforma de avaliação de filmes feita para estudantes e apaixonados por tecnologia. Aqui você encontra conteúdo atualizado, prático e pensado para ajudar no seu aprendizado e entretenimento. Aproveite e explore tudo o que preparamos para você!
-        </p>
-        <img src="img/img-1.png" alt="">
-        <!-- Botão de login -->
-        <div class="login-button-container">
-          <button class="login-button">Ir para Login</button>
-        </div>
-      </section>
+        <section class="intro">
+            <h1>ETECFLIX</h1>
+            <h2>Bem-vindo ao EtecFlix </h2>
+            <p>A plataforma de avaliação de filmes</p>
+            
+            <!-- BOTÃO PARA ACESSAR A PÁGINA DE LOGIN -->
+            <div class="login-button-container">
+                <button class="login-button" onclick="window.location.href='login.html'">Ir para Login</button>
+            </div>
+        </section>
     </main>
+
+    <!-- RODAPÉ COM CRÉDITOS DO DESENVOLVEDOR -->
     <footer class="footer">
-        <p class="paragrafo-rodape">João Rabelo</p>
+        <div class="footer-content">
+            <p>Desenvolvido por Vinicius</p>
+        </div>
     </footer>
 
-  </body>
+</body>
 </html>
